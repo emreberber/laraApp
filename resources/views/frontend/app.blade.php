@@ -105,6 +105,9 @@
 									<a href="/">Anasayfa</a>
 								</li>
 								<li>
+									<a href="/blog">Blog</a>
+								</li>
+								<li>
 									<a href="/hakkimizda">Hakkımızda</a>
 								</li>
 								<li>

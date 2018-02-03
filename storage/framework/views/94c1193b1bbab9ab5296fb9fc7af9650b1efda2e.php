@@ -70,7 +70,7 @@
 
                                                     <input type="hidden" name="slug" value="<?php echo e($blog->slug); ?>">
                                                     <input type="hidden" name="sira" value="<?php echo e($sira); ?>" id="sira">
-                                                    <input type="submit" class="btn btn-xs btn-danger" value="Sil">
+                                                    <input type="submit" onclick="sil(this, '<?php echo e($blog->slug); ?>' )" class="btn btn-xs btn-danger" value="Sil">
                                                 </form>
                                             </td>
                                             <td>

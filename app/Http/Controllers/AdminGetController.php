@@ -32,6 +32,7 @@ class AdminGetController extends AdminController
     }
 
     public function get_blog_duzenle($slug){
-        return view('backend.blog-duzenle')->with('slug', $slug);
+        $bloglar = Blog::where('slug', $slug)->first();
+        return view('backend.blog-duzenle')->with('bloglar', $bloglar);
     }
 }

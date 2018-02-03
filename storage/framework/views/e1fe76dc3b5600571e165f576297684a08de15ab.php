@@ -66,7 +66,7 @@
                 <li><a><i class="fa fa-paper"></i> Blog <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="/admin/blog">Bloglar</a></li>
-                    <li><a href="/admin/blog-ekle">Blog Ekle</a></li>
+                    <li><a href="/admin/blog/blog-ekle">Blog Ekle</a></li>
                     <li><a href="/admin/kategori">Kategoriler</a></li>
                     <li><a href="/admin/kategori-ekle">Kategori Ekle</a></li>
                   </ul>

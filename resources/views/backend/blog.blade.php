@@ -68,7 +68,7 @@
                                                     {{ csrf_field() }}
                                                     <input type="hidden" name="slug" value="{{ $blog->slug }}">
                                                     <input type="hidden" name="sira" value="{{ $sira }}" id="sira">
-                                                    <input type="submit" class="btn btn-xs btn-danger" value="Sil">
+                                                    <input type="submit" onclick="sil(this, '{{ $blog->slug }}' )" class="btn btn-xs btn-danger" value="Sil">
                                                 </form>
                                             </td>
                                             <td>

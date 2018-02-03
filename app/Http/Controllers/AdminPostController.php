@@ -74,6 +74,16 @@ class AdminPostController extends AdminController
 
 
     public function post_blog_ekle(Request $request){
+        $validator = Validator::make($request->all(), [
+            'resimler[]'=>'required|mimes:jpg,jpeg,png,gif',
+            'baslik' => 'required|max:250',
+            'etiketler' => 'required|max:250',
+            'icerik' => 'required',
+        ]);        
+
+        if($validator->fails()){
+            return response(['durum'=>'error', 'baslik'=>'Hata', 'icerik'=>'Yanlış girdi formatı']);
+        }
         $tarih = str_slug(Carbon::now());
         $slug = str_slug($request->baslik).'-'.$tarih;
         $resimler = $request->file('resimler');
@@ -112,5 +122,49 @@ class AdminPostController extends AdminController
             return response(['durum'=>'error', 'baslik'=>'Hata', 'icerik'=>'Silme başarısız oldu.']);
         }
         
+    }
+
+    public function post_blog_duzenle($slug, Request $request){
+        $validator = Validator::make($request->all(), [
+            'resimler[]'=>'mimes:jpg,jpeg,png,gif',
+            'baslik' => 'required|max:250',
+            'etiketler' => 'required|max:250',
+            'icerik' => 'required',
+        ]);        
+
+        if($validator->fails()){
+            return response(['durum'=>'error', 'baslik'=>'Hata', 'icerik'=>'Yanlış girdi formatı']);
+        }
+        if(isset($request->resim)){
+            try{    
+            Storage::disk('uploads')->delete($request->resim);
+            return response(['durum'=>'success', 'baslik'=>'Başarılı', 'icerik'=>'Resim başarıyla silindi.']); 
+            }
+            catch(Exception $e){
+                return response(['durum'=>'error', 'baslik'=>'Hata', 'icerik'=>'Silme başarısız oldu.']);
+            }
+        }
+        else{
+            $resimler = $request->file('resimler');
+            if(!empty($resimler)){
+            $i=$request->sayi;
+            $i++;
+            foreach($resimler as $resim){
+                $resim_uzanti = $resim->getClientOriginalExtension();
+                $resim_isim = $i.'.'.$resim_uzanti;
+                Storage::disk('uploads')->makeDirectory('img/blog/'.$slug);
+                Storage::disk('uploads')->put('img/blog/'.$slug.'/'.$resim_isim, file_get_contents($resim));
+                $i++;
+                }
+            }
+            try{
+                unset($request['_token']);
+                Blog::where('slug', $request->slug)->update(['baslik'=>$request->baslik, 'etiketler'=>$request->etiketler, 'icerik'=>$request->icerik]);
+                return response(['durum'=>'success', 'baslik'=>'Başarılı', 'icerik'=>'Kayıt başarıyla güncellendi.']); 
+            }
+            catch(Exception $e){
+                return response(['durum'=>'error', 'baslik'=>'Hata', 'icerik'=>'Güncelleme başarısız oldu.']);
+            }
+        }
     }
 }
