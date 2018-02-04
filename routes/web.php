@@ -21,12 +21,13 @@ Route::get('/hakkimizda','HomeGetController@get_hakkimizda');
 Route::get('/blog','HomeGetController@get_blog');
 Route::get('/blog/{slug}','HomeGetController@get_blog_icerik');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware'=>'Admin'], function () {
     Route::get('/', 'AdminGetController@get_index');
     Route::get('/ayarlar', 'AdminGetController@get_ayarlar');
     Route::post('/ayarlar', 'AdminPostController@post_ayarlar');
     Route::get('/hakkimizda', 'AdminGetController@get_hakkimizda');
     Route::post('/hakkimizda', 'AdminPostController@post_hakkimizda');
+
     Route::group(['prefix' => 'blog'], function () {
         Route::get('/', 'AdminGetController@get_blog');
         Route::post('/', 'AdminPostController@post_blog_sil');
@@ -34,6 +35,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/blog-ekle', 'AdminPostController@post_blog_ekle');
         Route::get('/blog-duzenle/{slug}', 'AdminGetController@get_blog_duzenle');
         Route::post('/blog-duzenle/{slug}', 'AdminPostController@post_blog_duzenle');
+        Route::get('/kategori-ekle', 'AdminGetController@get_kategori_ekle');
+        Route::post('/kategori-ekle', 'AdminPostController@post_kategori_ekle');
+        Route::get('/kategoriler', 'AdminGetController@get_kategoriler');
     });
     
 });
@@ -42,3 +46,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

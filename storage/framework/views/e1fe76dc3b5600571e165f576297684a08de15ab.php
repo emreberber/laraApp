@@ -63,12 +63,12 @@
                   <a href="/admin">
                     <i class="fa fa-home"></i> Anasayfa </a>
                 </li>
-                <li><a><i class="fa fa-paper"></i> Blog <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-pencil"></i> Blog <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="/admin/blog">Bloglar</a></li>
                     <li><a href="/admin/blog/blog-ekle">Blog Ekle</a></li>
-                    <li><a href="/admin/kategori">Kategoriler</a></li>
-                    <li><a href="/admin/kategori-ekle">Kategori Ekle</a></li>
+                    <li><a href="/admin/blog/kategori">Kategoriler</a></li>
+                    <li><a href="/admin/blog/kategori-ekle">Kategori Ekle</a></li>
                   </ul>
                 </li>
                 <li>
