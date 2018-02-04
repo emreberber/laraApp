@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ayarlar;
 use App\Hakkimizda;
+use App\Blog;
 use Illuminate\Http\Request;
 
 class HomeGetController extends HomeController
@@ -27,10 +28,12 @@ class HomeGetController extends HomeController
     }
 
     public function get_blog(){
-        return view('frontend.blog');
+        $bloglar = Blog::orderBy('id', 'desc')->get();
+        return view('frontend.blog')->with('bloglar', $bloglar);
     }
 
-    public function get_blog_detay(){
-        return view('frontend.blog-detay');
+    public function get_blog_icerik($slug){
+        $blog = Blog::where('slug', $slug)->first();
+        return view('frontend.blog-detay')->with('blog', $blog);
     }
 }

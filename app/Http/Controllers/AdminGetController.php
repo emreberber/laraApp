@@ -23,7 +23,7 @@ class AdminGetController extends AdminController
     }
 
     public function get_blog(){
-        $bloglar = Blog::all();
+        $bloglar = Blog::orderBy('id', 'desc')->get();
         return view('backend.blog')->with('bloglar', $bloglar);
     }
 

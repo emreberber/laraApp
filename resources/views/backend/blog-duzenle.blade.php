@@ -77,7 +77,8 @@ $sayi = 0;
                 </div>
               </div>
 
-              {{ Form::bsText('baslik', 'Başlık', $bloglar->baslik) }} 
+              {{ Form::bsText('baslik', 'Başlık', $bloglar->baslik) }}
+              {{ Form::bsText('kisaicerik', 'Kısa İçerik', $bloglar->kisaicerik) }}  
               {{ Form::bsText('etiketler', 'Etiketler', $bloglar->etiketler) }}
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12"> İçerik </label>

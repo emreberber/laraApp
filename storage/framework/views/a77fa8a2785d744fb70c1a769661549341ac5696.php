@@ -79,7 +79,9 @@ $sayi = 0;
                 </div>
               </div>
 
-              <?php echo e(Form::bsText('baslik', 'Başlık', $bloglar->baslik)); ?> 
+              <?php echo e(Form::bsText('baslik', 'Başlık', $bloglar->baslik)); ?>
+
+              <?php echo e(Form::bsText('kisaicerik', 'Kısa İçerik', $bloglar->kisaicerik)); ?>  
               <?php echo e(Form::bsText('etiketler', 'Etiketler', $bloglar->etiketler)); ?>
 
               <div class="form-group">

@@ -28,19 +28,22 @@
             <div class="col-md-9">
                 <div class="blog-posts">
 
-                    <article class="post post-large">
+
+                      
+                    <?php $__currentLoopData = $bloglar; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $blog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                    <article class="post post-large"> 
+
                         <div class="post-image">
                             <div class="owl-carousel" data-plugin-options='{"items":1}'>
+                                <?php $__currentLoopData = $resimler = Storage::disk('uploads')->files('img/blog/'.$blog->slug); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $resim): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div>
                                     <div class="img-thumbnail">
-                                        <img class="img-responsive" src="img/blog/blog-image-3.jpg" alt="">
+                                        <img class="img-responsive" src="/uploads/<?php echo e($resim); ?>" alt="">
                                     </div>
                                 </div>
-                                <div>
-                                    <div class="img-thumbnail">
-                                        <img class="img-responsive" src="img/blog/blog-image-2.jpg" alt="">
-                                    </div>
-                                </div>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
                             </div>
                         </div>
 
@@ -52,13 +55,9 @@
                         <div class="post-content">
 
                             <h2>
-                                <a href="blog-post.html">Post Format - Image Gallery</a>
+                                <a href="/blog/<?php echo e($blog->slug); ?>"><?php echo e($blog->baslik); ?></a>
                             </h2>
-                            <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent
-                                per conubia nostra, per inceptos himenaeos. Nulla nunc dui, tristique in semper vel, congue
-                                sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Pellentesque
-                                pellentesque tempor tellus eget hendrerit. Morbi id aliquam ligula. Aliquam id dui sem. Proin
-                                rhoncus consequat nisl, eu ornare mauris tincidunt vitae. [...]</p>
+                            <p><?php echo e($blog->kisaicerik); ?></p>
 
                             <div class="post-meta">
                                 <span>
@@ -74,52 +73,13 @@
                                     <i class="fa fa-comments"></i>
                                     <a href="#">12 Comments</a>
                                 </span>
-                                <a href="blog-post.html" class="btn btn-xs btn-primary pull-right">Read more...</a>
+                                <a href="/blog/<?php echo e($blog->slug); ?>" class="btn btn-xs btn-primary pull-right">Devamını oku...</a>
                             </div>
 
                         </div>
                     </article>
 
-                    <article class="post post-large">
-                        <div class="post-image single">
-                            <img class="img-thumbnail" src="img/blog/blog-image-2.jpg" alt="">
-                        </div>
-
-                        <div class="post-date">
-                            <span class="day">10</span>
-                            <span class="month">Jan</span>
-                        </div>
-
-                        <div class="post-content">
-
-                            <h2>
-                                <a href="blog-post.html">Post Format - Single Image</a>
-                            </h2>
-                            <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent
-                                per conubia nostra, per inceptos himenaeos. Nulla nunc dui, tristique in semper vel, congue
-                                sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Pellentesque
-                                pellentesque tempor tellus eget hendrerit. Morbi id aliquam ligula. Aliquam id dui sem. Proin
-                                rhoncus consequat nisl, eu ornare mauris tincidunt vitae. [...]</p>
-
-                            <div class="post-meta">
-                                <span>
-                                    <i class="fa fa-user"></i> By
-                                    <a href="#">John Doe</a>
-                                </span>
-                                <span>
-                                    <i class="fa fa-tag"></i>
-                                    <a href="#">Duis</a>,
-                                    <a href="#">News</a>
-                                </span>
-                                <span>
-                                    <i class="fa fa-comments"></i>
-                                    <a href="#">12 Comments</a>
-                                </span>
-                                <a href="blog-post.html" class="btn btn-xs btn-primary pull-right">Read more...</a>
-                            </div>
-
-                        </div>
-                    </article>             
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     <ul class="pagination pagination-lg pull-right">
                         <li>

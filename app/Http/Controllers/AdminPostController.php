@@ -75,10 +75,10 @@ class AdminPostController extends AdminController
 
     public function post_blog_ekle(Request $request){
         $validator = Validator::make($request->all(), [
-            'resimler[]'=>'required|mimes:jpg,jpeg,png,gif',
             'baslik' => 'required|max:250',
             'etiketler' => 'required|max:250',
             'icerik' => 'required',
+            'kisaicerik' => 'required',
         ]);        
 
         if($validator->fails()){
@@ -130,6 +130,7 @@ class AdminPostController extends AdminController
             'baslik' => 'required|max:250',
             'etiketler' => 'required|max:250',
             'icerik' => 'required',
+            'kisaicerik' => 'required',
         ]);        
 
         if($validator->fails()){
@@ -159,7 +160,7 @@ class AdminPostController extends AdminController
             }
             try{
                 unset($request['_token']);
-                Blog::where('slug', $request->slug)->update(['baslik'=>$request->baslik, 'etiketler'=>$request->etiketler, 'icerik'=>$request->icerik]);
+                Blog::where('slug', $request->slug)->update(['baslik'=>$request->baslik, 'etiketler'=>$request->etiketler, 'icerik'=>$request->icerik, 'kisaicerik'=>$request->kisaicerik]);
                 return response(['durum'=>'success', 'baslik'=>'Başarılı', 'icerik'=>'Kayıt başarıyla güncellendi.']); 
             }
             catch(Exception $e){
