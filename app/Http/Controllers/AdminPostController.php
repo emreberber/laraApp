@@ -80,6 +80,7 @@ class AdminPostController extends AdminController
             'etiketler' => 'required|max:250',
             'icerik' => 'required',
             'kisaicerik' => 'required',
+            'kategori' => 'required',
         ]);        
 
         if($validator->fails()){

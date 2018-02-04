@@ -38,8 +38,26 @@
                                                     <input type="file" name="resimler[]" multiple class="form-control col-md-7 col-xs-12">
                                                 </div>
                                             </div>
-
+                                            <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> Kategori </label>     
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <select class="form-control" name="kategori">
+                                                            <option value="0"> Diğer</option>
+                                                         <?php $__currentLoopData = $kategoriler; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kategori): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            
+                                                            <option value="<?php echo e($kategori->id); ?>"> <?php echo e($kategori->ad); ?></option>
+                                                                <?php $__currentLoopData = $kategori->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $altkategori): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                    <option value="<?php echo e($altkategori->id); ?>"><?php echo e($kategori->ad); ?> --> <?php echo e($altkategori->ad); ?></option>
+                                                                        <?php $__currentLoopData = $altkategori->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $altaltkategori): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                            <option value="<?php echo e($altaltkategori->id); ?>"><?php echo e($kategori->ad); ?> --><?php echo e($altkategori->ad); ?> --> <?php echo e($altaltkategori->ad); ?></option>
+                                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </select>
+                                            </div>
+                                        </div>
                                             <?php echo e(Form::bsText('baslik', 'Başlık')); ?> 
+                                            <?php echo e(Form::bsText('kisaicerik', 'Kısa İcerik')); ?> 
                                             <?php echo e(Form::bsText('etiketler', 'Etiketler')); ?> 
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"> İçerik </label>     

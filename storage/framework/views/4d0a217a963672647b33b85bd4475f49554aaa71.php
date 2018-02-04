@@ -16,21 +16,22 @@
 
                     <h4>Categories</h4>
                     <ul class="nav nav-list primary push-bottom">
-                        <li>
-                            <a href="#">Design</a>
-                        </li>
-                        <li>
-                            <a href="#">Photos</a>
-                        </li>
-                        <li>
-                            <a href="#">Videos</a>
-                        </li>
-                        <li>
-                            <a href="#">Lifestyle</a>
-                        </li>
-                        <li>
-                            <a href="#">Technology</a>
-                        </li>
+                            <?php $__currentLoopData = $kategoriler; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kategori): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li>
+                                <a href="blog/<?php echo e($kategori->slug); ?>"><?php echo e($kategori->ad); ?></a>
+                            </li>
+               
+                                <?php $__currentLoopData = $kategori->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $altkategori): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                     <li>
+                                        <a href="blog/<?php echo e($kategori->slug); ?>/<?php echo e($altkategori->slug); ?>"><?php echo e($kategori->ad); ?></a>
+                                    </li>
+                                        <?php $__currentLoopData = $altkategori->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $altaltkategori): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <li>
+                                                <a href="blog/<?php echo e($kategori->slug); ?>/<?php echo e($altkategori->slug); ?>/<?php echo e($altaltkategori->slug); ?>"><?php echo e($kategori->ad); ?></a>
+                                            </li>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
 
                     <div class="tabs">

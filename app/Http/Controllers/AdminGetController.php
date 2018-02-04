@@ -29,7 +29,8 @@ class AdminGetController extends AdminController
     }
 
     public function get_blog_ekle(){
-        return view('backend.blog-ekle');
+        $kategoriler = Kategori::where('ust_kategori', '0')->get();
+        return view('backend.blog-ekle')->with('kategoriler', $kategoriler);
     }
 
     public function get_blog_duzenle($slug){
@@ -43,7 +44,7 @@ class AdminGetController extends AdminController
     }
 
     public function get_kategoriler(){
-        $kategoriler = Kategori::all();
+        $kategoriler = Kategori::where('ust_kategori', '0')->get();
         return view('backend.kategoriler')->with('kategoriler', $kategoriler);
     }
 }

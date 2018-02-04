@@ -19,7 +19,7 @@ Route::get('/anasayfa','HomeGetController@get_index_yonlendir');
 Route::get('/iletisim','HomeGetController@get_iletisim');
 Route::get('/hakkimizda','HomeGetController@get_hakkimizda');
 Route::get('/blog','HomeGetController@get_blog');
-Route::get('/blog/{slug}','HomeGetController@get_blog_icerik');
+Route::get('/blog/{slug}','HomeGetController@get_blog_icerik')->where('slug', '^[a-zA-z0-9-_\/]+$');
 
 Route::group(['prefix' => 'admin', 'middleware'=>'Admin'], function () {
     Route::get('/', 'AdminGetController@get_index');

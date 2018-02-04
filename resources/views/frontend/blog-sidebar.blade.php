@@ -16,21 +16,22 @@
 
                     <h4>Categories</h4>
                     <ul class="nav nav-list primary push-bottom">
-                        <li>
-                            <a href="#">Design</a>
-                        </li>
-                        <li>
-                            <a href="#">Photos</a>
-                        </li>
-                        <li>
-                            <a href="#">Videos</a>
-                        </li>
-                        <li>
-                            <a href="#">Lifestyle</a>
-                        </li>
-                        <li>
-                            <a href="#">Technology</a>
-                        </li>
+                            @foreach ($kategoriler as $kategori)
+                            <li>
+                                <a href="blog/{{ $kategori->slug }}">{{ $kategori->ad }}</a>
+                            </li>
+               
+                                @foreach ($kategori->children as $altkategori)
+                                     <li>
+                                        <a href="blog/{{ $kategori->slug }}/{{ $altkategori->slug }}">{{ $kategori->ad }}</a>
+                                    </li>
+                                        @foreach ($altkategori->children as $altaltkategori)
+                                            <li>
+                                                <a href="blog/{{ $kategori->slug }}/{{ $altkategori->slug }}/{{ $altaltkategori->slug }}">{{ $kategori->ad }}</a>
+                                            </li>
+                                        @endforeach
+                            @endforeach
+                        @endforeach
                     </ul>
 
                     <div class="tabs">

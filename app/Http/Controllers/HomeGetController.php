@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Ayarlar;
 use App\Hakkimizda;
 use App\Blog;
+use App\Kategori;
 use Illuminate\Http\Request;
 
 class HomeGetController extends HomeController
@@ -28,12 +29,15 @@ class HomeGetController extends HomeController
     }
 
     public function get_blog(){
+        $kategoriler = Kategori::where('ust_kategori', '0')->get();
         $bloglar = Blog::orderBy('id', 'desc')->get();
-        return view('frontend.blog')->with('bloglar', $bloglar);
+        return view('frontend.blog')->with('bloglar', $bloglar)->with('kategoriler', $kategoriler);
     }
 
     public function get_blog_icerik($slug){
-        $blog = Blog::where('slug', $slug)->first();
-        return view('frontend.blog-detay')->with('blog', $blog);
+        $kategori =explode('/', $slug);
+        $kategoriler = Kategori::where('ust_kategori', '0')->get();
+        $blog = Blog::where('slug', $kategori[count($kategori)-1])->first();
+        return view('frontend.blog-detay')->with('blog', $blog)->with('kategoriler', $kategoriler)->with('blog-kategori', $kategori);
     }
 }
