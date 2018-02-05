@@ -90,6 +90,9 @@
                                 <h3><i class="fa fa-comments"></i>Comments (3)</h3>
 
                                 <ul class="comments">
+                                    <?php $__currentLoopData = $blog->yorumlar->where('ust_yorum', '0'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $yorum): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        
+                                   
                                     <li>
                                         <div class="comment">
                                             <div class="img-thumbnail">
@@ -98,17 +101,28 @@
                                             <div class="comment-block">
                                                 <div class="comment-arrow"></div>
                                                 <span class="comment-by">
-                                                    <strong>John Doe</strong>
+                                                    <strong>
+                                                        <?php if($yorum->kullanici_id>0): ?>
+                                                            <?php echo e($yorum->user->name); ?>
+
+                                                            <?php else: ?>
+                                                                <?php echo e($yorum->isim); ?>
+
+                                                        <?php endif; ?>
+                                                    </strong>
                                                     <span class="pull-right">
                                                         <span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
                                                     </span>
                                                 </span>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.</p>
-                                                <span class="date pull-right">January 12, 2013 at 1:38 pm</span>
+                                                <p><?php echo e($yorum->icerik); ?></p>
+                                                <span class="date pull-right"><?php echo e($yorum->created_at); ?></span>
                                             </div>
                                         </div>
 
                                         <ul class="comments reply">
+                                            <?php $__currentLoopData = $yorum->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $altyorum): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                
+                                            
                                             <li>
                                                 <div class="comment">
                                                     <div class="img-thumbnail">
@@ -117,72 +131,30 @@
                                                     <div class="comment-block">
                                                         <div class="comment-arrow"></div>
                                                         <span class="comment-by">
-                                                            <strong>John Doe</strong>
+                                                            <strong>
+                                                                <?php if($altyorum->kullanici_id>0): ?>
+                                                                    <?php echo e($altyorum->user->name); ?>
+
+                                                                    <?php else: ?>
+                                                                        <?php echo e($altyorum->isim); ?>
+
+                                                                <?php endif; ?>
+                                                            </strong>
                                                             <span class="pull-right">
                                                                 <span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
                                                             </span>
                                                         </span>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.</p>
-                                                        <span class="date pull-right">January 12, 2013 at 1:38 pm</span>
+                                                        <p><?php echo e($altyorum->icerik); ?></p>
+                                                        <span class="date pull-right"><?php echo e($altyorum->created_at); ?></span>
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="comment">
-                                                    <div class="img-thumbnail">
-                                                        <img class="avatar" alt="" src="img/avatar-4.jpg">
-                                                    </div>
-                                                    <div class="comment-block">
-                                                        <div class="comment-arrow"></div>
-                                                        <span class="comment-by">
-                                                            <strong>John Doe</strong>
-                                                            <span class="pull-right">
-                                                                <span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
-                                                            </span>
-                                                        </span>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.</p>
-                                                        <span class="date pull-right">January 12, 2013 at 1:38 pm</span>
-                                                    </div>
-                                                </div>
-                                            </li>
+
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </ul>
                                     </li>
-                                    <li>
-                                        <div class="comment">
-                                            <div class="img-thumbnail">
-                                                <img class="avatar" alt="" src="img/avatar.jpg">
-                                            </div>
-                                            <div class="comment-block">
-                                                <div class="comment-arrow"></div>
-                                                <span class="comment-by">
-                                                    <strong>John Doe</strong>
-                                                    <span class="pull-right">
-                                                        <span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
-                                                    </span>
-                                                </span>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                                <span class="date pull-right">January 12, 2013 at 1:38 pm</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="comment">
-                                            <div class="img-thumbnail">
-                                                <img class="avatar" alt="" src="img/avatar.jpg">
-                                            </div>
-                                            <div class="comment-block">
-                                                <div class="comment-arrow"></div>
-                                                <span class="comment-by">
-                                                    <strong>John Doe</strong>
-                                                    <span class="pull-right">
-                                                        <span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
-                                                    </span>
-                                                </span>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                                <span class="date pull-right">January 12, 2013 at 1:38 pm</span>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+ 
                                 </ul>
 
                             </div>
@@ -190,24 +162,28 @@
                             <div class="post-block post-leave-comment">
                                 <h3>Leave a comment</h3>
 
-                                <form action="" method="post">
+                                <form action="" method="post" id="form">
+                                    <?php echo e(csrf_field()); ?>
+
+                                    <?php if(!Auth::check()): ?>
                                     <div class="row">
                                         <div class="form-group">
                                             <div class="col-md-6">
                                                 <label>Your name *</label>
-                                                <input type="text" value="" maxlength="100" class="form-control" name="name" id="name">
+                                                <input type="text" value="" maxlength="100" class="form-control" name="isim" id="name">
                                             </div>
                                             <div class="col-md-6">
                                                 <label>Your email address *</label>
-                                                <input type="email" value="" maxlength="100" class="form-control" name="email" id="email">
+                                                <input type="email" value="" maxlength="100" class="form-control" name="mail" id="email">
                                             </div>
                                         </div>
                                     </div>
+                                    <?php endif; ?>
                                     <div class="row">
                                         <div class="form-group">
                                             <div class="col-md-12">
                                                 <label>Comment *</label>
-                                                <textarea maxlength="5000" rows="10" class="form-control" name="comment" id="comment"></textarea>
+                                                <textarea maxlength="5000" rows="10" class="form-control" name="icerik" id="comment"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -237,8 +213,36 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('js'); ?>
+<script src="/js/jquery.form.min.js"></script>
+    <script src="/js/jquery.validate.min.js"></script>
+    <script src="/js/messages_tr.min.js"></script>
+    <script src="/js/sweetalert2.min.js"></script>
+
+    <script>
+
+        $(document).ready(function(){
+            // formumuzun id'sine 'form' verdik ve o isimle cektik
+            $('form').validate();
+            $('form').ajaxForm({
+                beforeSubmit:function(){
+
+                },
+                // Controller'dan response geriye döndürdük
+                success:function(response){
+                    swal(
+                        response.baslik,
+                        response.icerik,
+                        response.durum
+                    )                            
+                }
+            });
+        });
+
+    </script>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
+<link href="/css/sweetalert2.min.css" rel="stylesheet">
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('frontend.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -12,4 +12,12 @@ class Blog extends Model
     public function parent(){
         return $this->belongsTo('App\Kategori', 'kategori', 'id');
     }
+
+    public function idsor(){
+        return $this->where('slug', $slug)->select('bloglar.id')->first();
+    }
+
+    public function yorumlar(){
+        return $this->hasMany('App\Yorum', 'blog', 'slug');
+    }
 }
