@@ -23,11 +23,11 @@
                
                                 @foreach ($kategori->children as $altkategori)
                                      <li>
-                                        <a href="blog/{{ $kategori->slug }}/{{ $altkategori->slug }}">{{ $kategori->ad }}</a>
+                                        <a href="blog/{{ $kategori->slug }}/{{ $altkategori->slug }}">{{ $altkategori->ad }}</a>
                                     </li>
                                         @foreach ($altkategori->children as $altaltkategori)
                                             <li>
-                                                <a href="blog/{{ $kategori->slug }}/{{ $altkategori->slug }}/{{ $altaltkategori->slug }}">{{ $kategori->ad }}</a>
+                                                <a href="blog/{{ $kategori->slug }}/{{ $altkategori->slug }}/{{ $altaltkategori->slug }}">{{ $altkategori->ad }}</a>
                                             </li>
                                         @endforeach
                             @endforeach

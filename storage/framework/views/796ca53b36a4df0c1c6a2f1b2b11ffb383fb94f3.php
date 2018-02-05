@@ -55,6 +55,9 @@
                             </div>
 
                             <blockquote><?php echo e($blog->kisaicerik); ?></blockquote>
+
+                            
+
                             <p> <?php echo e($blog->icerik); ?> </p>
 
                             <div class="post-block post-share">

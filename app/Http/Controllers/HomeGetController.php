@@ -38,6 +38,17 @@ class HomeGetController extends HomeController
         $kategori =explode('/', $slug);
         $kategoriler = Kategori::where('ust_kategori', '0')->get();
         $blog = Blog::where('slug', $kategori[count($kategori)-1])->first();
-        return view('frontend.blog-detay')->with('blog', $blog)->with('kategoriler', $kategoriler)->with('blog-kategori', $kategori);
+        if(isset($blog)){
+            return view('frontend.blog-detay')->with('blog', $blog)->with('kategoriler', $kategoriler)->with('blog-kategori', $kategori);
+        }
+        else{
+            // s degiskeni slugun en sondaki degeri veriyor bize.Yani kategorilerden sonra gelen deger
+            $s = $kategori[count($kategori)-1];
+            $b = Kategori::where('slug', $s)->get();
+            // bloglar metodunu Kategori modelinde tanımladık
+            $bloglar = $b[0]->bloglar;
+            return view('frontend.blog')->with('bloglar', $bloglar)->with('kategoriler', $kategoriler);
+        }
+        
     }
 }

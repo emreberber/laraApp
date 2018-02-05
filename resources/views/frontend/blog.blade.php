@@ -58,7 +58,7 @@
                         <div class="post-content">
 
                             <h2>
-                                <a href="/blog/{{ $blog->slug }}">{{ $blog->baslik }}</a>
+                                <a href="/blog/@if(isset($blog->parent))@php( $ustkategori = $blog->parent)@if(isset($ustkategori->parent))@php($ustustkategori = $ustkategori->parent)@if(isset($ustustkategori->parent)){{ $ustustkategori->parent->slug }}/@endif{{ $ustkategori->parent->slug }}/@endif{{ $blog->parent->slug }}@endif/{{ $blog->slug }}">{{ $blog->baslik }}</a>
                             </h2>
                             <p>{{ $blog->kisaicerik }}</p>
 
@@ -76,7 +76,7 @@
                                     <i class="fa fa-comments"></i>
                                     <a href="#">12 Comments</a>
                                 </span>
-                                <a href="/blog/{{ $blog->slug }}" class="btn btn-xs btn-primary pull-right">Devamını oku...</a>
+                                <a href="/blog/@if(isset($blog->parent))@php( $ustkategori = $blog->parent)@if(isset($ustkategori->parent))@php($ustustkategori = $ustkategori->parent)@if(isset($ustustkategori->parent)){{ $ustustkategori->parent->slug }}/@endif{{ $ustkategori->parent->slug }}/@endif{{ $blog->parent->slug }}@endif/{{ $blog->slug }}" class="btn btn-xs btn-primary pull-right">Devamını oku...</a>
                             </div>
 
                         </div>

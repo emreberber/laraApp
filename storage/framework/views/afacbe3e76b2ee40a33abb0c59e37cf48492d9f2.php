@@ -55,7 +55,7 @@
                         <div class="post-content">
 
                             <h2>
-                                <a href="/blog/<?php echo e($blog->slug); ?>"><?php echo e($blog->baslik); ?></a>
+                                <a href="/blog/<?php if(isset($blog->parent)): ?><?php ( $ustkategori = $blog->parent); ?><?php if(isset($ustkategori->parent)): ?><?php ($ustustkategori = $ustkategori->parent); ?><?php if(isset($ustustkategori->parent)): ?><?php echo e($ustustkategori->parent->slug); ?>/<?php endif; ?><?php echo e($ustkategori->parent->slug); ?>/<?php endif; ?><?php echo e($blog->parent->slug); ?><?php endif; ?>/<?php echo e($blog->slug); ?>"><?php echo e($blog->baslik); ?></a>
                             </h2>
                             <p><?php echo e($blog->kisaicerik); ?></p>
 
@@ -73,7 +73,7 @@
                                     <i class="fa fa-comments"></i>
                                     <a href="#">12 Comments</a>
                                 </span>
-                                <a href="/blog/<?php echo e($blog->slug); ?>" class="btn btn-xs btn-primary pull-right">Devamını oku...</a>
+                                <a href="/blog/<?php if(isset($blog->parent)): ?><?php ( $ustkategori = $blog->parent); ?><?php if(isset($ustkategori->parent)): ?><?php ($ustustkategori = $ustkategori->parent); ?><?php if(isset($ustustkategori->parent)): ?><?php echo e($ustustkategori->parent->slug); ?>/<?php endif; ?><?php echo e($ustkategori->parent->slug); ?>/<?php endif; ?><?php echo e($blog->parent->slug); ?><?php endif; ?>/<?php echo e($blog->slug); ?>" class="btn btn-xs btn-primary pull-right">Devamını oku...</a>
                             </div>
 
                         </div>

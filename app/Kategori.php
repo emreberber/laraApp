@@ -14,6 +14,12 @@ class Kategori extends Model
     }
 
     public function children(){
+        // 1den coga
         return $this->hasMany('App\Kategori', 'ust_kategori');
+    }
+
+    public function bloglar(){
+        // kategori iliskilendirmek istedigimiz tablo.İd ise suanki Kategori tablosundaki id
+        return $this->hasMany('App\Blog', 'kategori', 'id');
     }
 }

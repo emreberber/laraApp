@@ -57,6 +57,9 @@
                             </div>
 
                             <blockquote>{{ $blog->kisaicerik }}</blockquote>
+
+                            
+
                             <p> {{ $blog->icerik}} </p>
 
                             <div class="post-block post-share">
