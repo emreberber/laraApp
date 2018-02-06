@@ -1,5 +1,5 @@
 <?php $__env->startSection('icerik'); ?>
-
+<?php (setlocale(LC_TIME, "turkish")); ?>
 <div role="main" class="main">
 
     <section class="page-top">
@@ -48,8 +48,8 @@
                         </div>
 
                         <div class="post-date">
-                            <span class="day">10</span>
-                            <span class="month">Jan</span>
+                            <span class="day"><?php echo e($blog->created_at->formatLocalized('%d')); ?></span>
+                            <span class="month"><?php echo e($blog->created_at->formatLocalized('%b')); ?></span>
                         </div>
 
                         <div class="post-content">
@@ -62,7 +62,7 @@
                             <div class="post-meta">
                                 <span>
                                     <i class="fa fa-user"></i> By
-                                    <a href="#">John Doe</a>
+                                    <a href="/blog/yazar/<?php echo e($blog->user->slug); ?>-<?php echo e($blog->user->id); ?>"><?php echo e($blog->user->name); ?></a>
                                 </span>
                                 <span>
                                     <i class="fa fa-tag"></i>
@@ -71,7 +71,7 @@
                                 </span>
                                 <span>
                                     <i class="fa fa-comments"></i>
-                                    <a href="#">12 Comments</a>
+                                    <?php echo e($blog->yorumlar->count()); ?> Comments
                                 </span>
                                 <a href="/blog/<?php if(isset($blog->parent)): ?><?php ( $ustkategori = $blog->parent); ?><?php if(isset($ustkategori->parent)): ?><?php ($ustustkategori = $ustkategori->parent); ?><?php if(isset($ustustkategori->parent)): ?><?php echo e($ustustkategori->parent->slug); ?>/<?php endif; ?><?php echo e($ustkategori->parent->slug); ?>/<?php endif; ?><?php echo e($blog->parent->slug); ?><?php endif; ?>/<?php echo e($blog->slug); ?>" class="btn btn-xs btn-primary pull-right">Devamını oku...</a>
                             </div>

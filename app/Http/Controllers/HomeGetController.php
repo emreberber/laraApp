@@ -7,11 +7,22 @@ use App\Hakkimizda;
 use App\Blog;
 use App\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeGetController extends HomeController
 {
     public function get_index(){
         return view('frontend.index');
+    }
+
+    public function get_giris_yap(){
+        return view('frontend.giris-yap');
+    }
+
+    public function get_cikis_yap(){
+        
+        Auth::logout();
+        return redirect('/');
     }
 
     public function get_index_yonlendir(){
@@ -51,4 +62,12 @@ class HomeGetController extends HomeController
         }
         
     }
+
+    public function get_blog_yazar($yazar){
+        $y = explode('-', $yazar);
+        $kategoriler = Kategori::where('ust_kategori', '0')->get();
+        $bloglar = Blog::where('yazar', $y[count($y)-1])->orderBy('id', 'desc')->get();
+        return view('frontend.blog')->with('bloglar', $bloglar)->with('kategoriler', $kategoriler);
+    }
+
 }

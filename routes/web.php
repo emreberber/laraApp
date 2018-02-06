@@ -15,10 +15,13 @@ Route::get('/','HomeGetController@get_index');
 Route::get('/index','HomeGetController@get_index_yonlendir');
 Route::get('/home','HomeGetController@get_index_yonlendir');
 Route::get('/anasayfa','HomeGetController@get_index_yonlendir');
+Route::get('/giris-yap','HomeGetController@get_giris_yap');
+Route::get('/cikis-yap','HomeGetController@get_cikis_yap');
 
 Route::get('/iletisim','HomeGetController@get_iletisim');
 Route::get('/hakkimizda','HomeGetController@get_hakkimizda');
 Route::get('/blog','HomeGetController@get_blog');
+Route::get('/blog/yazar/{yazar}','HomeGetController@get_blog_yazar');
 Route::get('/blog/{slug}','HomeGetController@get_blog_icerik')->where('slug', '^[a-zA-z0-9-_\/]+$');
 Route::post('/blog/{slug}','HomePostController@post_blog_yorum')->where('slug', '^[a-zA-z0-9-_\/]+$');
 

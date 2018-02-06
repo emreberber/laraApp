@@ -115,7 +115,8 @@
                                                     </span>
                                                 </span>
                                                 <p>{{ $yorum->icerik }}</p>
-                                                <span class="date pull-right">{{ $yorum->created_at }}</span>
+                                                @php(setlocale(LC_TIME, "turkish"))
+                                                <span class="date pull-right">{{ $yorum->created_at->diffForHumans() }}</span>
                                             </div>
                                         </div>
 
@@ -143,7 +144,7 @@
                                                             </span>
                                                         </span>
                                                         <p>{{ $altyorum->icerik }}</p>
-                                                        <span class="date pull-right">{{ $altyorum->created_at }}</span>
+                                                        <span class="date pull-right">{{ $altyorum->created_at->diffForHumans() }}</span>
                                                     </div>
                                                 </div>
                                             </li>

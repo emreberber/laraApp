@@ -20,4 +20,8 @@ class Blog extends Model
     public function yorumlar(){
         return $this->hasMany('App\Yorum', 'blog', 'slug');
     }
+
+    public function user(){
+        return $this->hasOne('App\User', 'id', 'yazar');
+    }
 }

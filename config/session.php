@@ -15,7 +15,7 @@ return [
     |            "memcached", "redis", "array"
     |
     */
-
+    // redis yazan yerde önceden file yazıyordu biz değiştirdik
     'driver' => env('SESSION_DRIVER', 'redis'),
 
     /*

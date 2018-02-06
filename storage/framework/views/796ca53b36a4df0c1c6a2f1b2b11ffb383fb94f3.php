@@ -115,7 +115,8 @@
                                                     </span>
                                                 </span>
                                                 <p><?php echo e($yorum->icerik); ?></p>
-                                                <span class="date pull-right"><?php echo e($yorum->created_at); ?></span>
+                                                <?php (setlocale(LC_TIME, "turkish")); ?>
+                                                <span class="date pull-right"><?php echo e($yorum->created_at->diffForHumans()); ?></span>
                                             </div>
                                         </div>
 
@@ -145,7 +146,7 @@
                                                             </span>
                                                         </span>
                                                         <p><?php echo e($altyorum->icerik); ?></p>
-                                                        <span class="date pull-right"><?php echo e($altyorum->created_at); ?></span>
+                                                        <span class="date pull-right"><?php echo e($altyorum->created_at->diffForHumans()); ?></span>
                                                     </div>
                                                 </div>
                                             </li>
