@@ -6,6 +6,7 @@ use App\Ayarlar;
 use App\Hakkimizda;
 use App\Blog;
 use App\Kategori;
+use App\Anabaslik;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -68,6 +69,11 @@ class HomeGetController extends HomeController
         $kategoriler = Kategori::where('ust_kategori', '0')->get();
         $bloglar = Blog::where('yazar', $y[count($y)-1])->orderBy('id', 'desc')->get();
         return view('frontend.blog')->with('bloglar', $bloglar)->with('kategoriler', $kategoriler);
+    }
+
+    public function get_forum(){
+        $anabasliklar = Anabaslik::all();
+        return view('frontend.forum')->with('anabaslik', $anabasliklar);
     }
 
 }

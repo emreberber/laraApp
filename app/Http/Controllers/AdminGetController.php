@@ -47,4 +47,12 @@ class AdminGetController extends AdminController
         $kategoriler = Kategori::where('ust_kategori', '0')->get();
         return view('backend.kategoriler')->with('kategoriler', $kategoriler);
     }
+
+    public function get_ana_basliklar(){
+        return view('backend.ana-basliklar');
+    }
+
+    public function get_ana_baslik_ekle(){
+        return view('backend.ana-baslik-ekle');
+    }
 }

@@ -79,6 +79,14 @@
                   <a href="/admin/hakkimizda">
                     <i class="fa fa-book"></i> Hakkımızda </a>
                 </li>
+                <li><a><i class="fa fa-newspaper-o"></i> Forum <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="/admin/blog">Bloglar</a></li>
+                    <li><a href="/admin/blog/blog-ekle">Blog Ekle</a></li>
+                    <li><a href="/admin/forum/ana-basliklar">Ana Başlıklar</a></li>
+                    <li><a href="/admin/forum/ana-baslik-ekle">Başlık ekle</a></li>
+                  </ul>
+                </li>
 
               </ul>
             </div>

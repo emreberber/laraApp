@@ -43,12 +43,20 @@ Route::group(['prefix' => 'admin', 'middleware'=>'Admin'], function () {
         Route::post('/kategori-ekle', 'AdminPostController@post_kategori_ekle');
         Route::get('/kategoriler', 'AdminGetController@get_kategoriler');
     });
+    Route::group(['prefix' => 'forum'], function () {
+        Route::get('/', 'AdminGetController@get_ana_basliklar');
+        Route::get('/ana-baslik-ekle', 'AdminGetController@get_ana_baslik_ekle');
+        Route::post('/ana-baslik-ekle', 'AdminPostController@post_anabaslik_ekle');
+    });
     
 });
 
 
 
-
+Route::group(['prefix' => 'forum'], function () {
+    Route::get('/', 'HomeGetController@get_forum');
+    Route::post('/', 'HomePostController@post_forum');
+});
 
 
 Auth::routes();

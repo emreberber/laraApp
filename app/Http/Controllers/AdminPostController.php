@@ -6,6 +6,7 @@ use App\Ayarlar;
 use App\Hakkimizda;
 use App\Blog;
 use App\Kategori;
+use App\Anabaslik;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage; 
@@ -189,5 +190,27 @@ class AdminPostController extends AdminController
             return response(['durum'=>'error', 'baslik'=>'Hata', 'icerik'=>'Kayıt Başarısız']);
         }
         
+    }
+
+
+    public function post_anabaslik_ekle(Request $request){
+        $validator = Validator::make($request->all(), [
+            'baslik' => 'required|max:50',
+            'kisa_aciklama' => 'required|max:250',
+        ]);        
+
+        if($validator->fails()){
+            return response(['durum'=>'error', 'baslik'=>'Hata', 'icerik'=>'Yanlış girdi formatı']);
+        }
+        $slug = str_slug($request->baslik);
+        try{
+            unset($request['_token']);
+            $request->merge(['slug'=>$slug]);
+            Anabaslik::create($request->all());
+            return response(['durum'=>'success', 'baslik'=>'Başarılı', 'icerik'=>'Kayıt başarıyla yapıdı.']); 
+        }
+        catch(Exception $e){
+            return response(['durum'=>'error', 'baslik'=>'Hata', 'icerik'=>'Kayıt başarısız oldu.']);
+        }
     }
 }
